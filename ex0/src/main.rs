@@ -1,4 +1,4 @@
-use chrono::{DateTime, Datelike, Local};
+use chrono::{Datelike, Local};
 
 fn is_weekend_soon_if(day: chrono::Weekday) {
     if day == chrono::Weekday::Fri {
@@ -19,8 +19,7 @@ fn is_weekend_soon_match(day: chrono::Weekday) {
 }
 
 fn main() {
-    let local: DateTime<Local> = Local::now();
-    let day = local.naive_local().weekday();
+    let day = Local::now().weekday();
 
     is_weekend_soon_match(day);
 }
