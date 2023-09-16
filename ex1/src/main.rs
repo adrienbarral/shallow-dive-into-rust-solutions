@@ -2,8 +2,7 @@ fn addition(v1: u32, v2: u32) -> u32 {
     v1 + v2
 }
 
-fn main() {    
-    println!("");
+fn main() {   
 }
 
 #[cfg(test)]
