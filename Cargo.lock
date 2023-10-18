@@ -76,12 +76,22 @@ checksum = "e496a50fda8aacccc86d7529e2c1e0892dbd0f898a6b5645b5561b89c3210efa"
 [[package]]
 name = "ex1"
 version = "0.1.0"
+dependencies = [
+ "text_io",
+]
 
 [[package]]
 name = "ex2"
 version = "0.1.0"
 dependencies = [
  "approx",
+]
+
+[[package]]
+name = "ex3"
+version = "0.1.0"
+dependencies = [
+ "text_io",
 ]
 
 [[package]]
@@ -178,6 +188,12 @@ dependencies = [
  "quote",
  "unicode-ident",
 ]
+
+[[package]]
+name = "text_io"
+version = "0.1.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d5f0c8eb2ad70c12a6a69508f499b3051c924f4b1cfeae85bfad96e6bc5bba46"
 
 [[package]]
 name = "unicode-ident"
