@@ -1,15 +1,15 @@
 #[derive(Debug, PartialEq)]
-enum ParseError{
+enum ParseError {
     ParseError,
-    NotEnoughElementError
+    NotEnoughElementError,
 }
 
 // Exercice : On laisse écrire toute cette fonction avec sa signature
 // (on laisse l'enum ci-dessus).
-fn parse_line(line: &str)->Result<(f32,f32), ParseError>{
+fn parse_line(line: &str) -> Result<(f32, f32), ParseError> {
     let res: Vec<&str> = line.split(";").collect();
 
-    match (res.get(0), res.get(1)){
+    match (res.get(0), res.get(1)) {
         (Some(elem1), Some(elem2)) => {
             if let Ok(val1) = elem1.parse::<f32>() {
                 if let Ok(val2) = elem2.parse::<f32>() {
@@ -17,19 +17,18 @@ fn parse_line(line: &str)->Result<(f32,f32), ParseError>{
                 }
             }
             return Err(ParseError::ParseError);
-        },
-        _ => return Err(ParseError::NotEnoughElementError)
+        }
+        _ => return Err(ParseError::NotEnoughElementError),
     }
 }
 
-fn main() {
-}
-
+fn main() {}
 
 #[cfg(test)]
 mod tests {
-    use crate::*;
+    use std::path::Path;
 
+    use crate::*;
 
     #[test]
     fn ex6_parse_well_formated_line() {
@@ -46,10 +45,23 @@ mod tests {
         assert_eq!(parse_line("-5.2"), Err(ParseError::NotEnoughElementError));
     }
 
-    fn ex6_parse_from_file() {
-        // Metre ici la récupération de l'URL du fichier et c'est tout.
-        
-        /// A compléter
+    #[test]
+    fn ex6_parse_from_correct_file() {
+        let file_path = Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("test_resources")
+            .join("correct_file.mir");
+
+        // Un comment and create method making this test passing :
+        // assert_eq!(parse_from_file(&file_path), Ok((12.5, -2.45)));
     }
 
+    #[test]
+    fn ex6_parse_from_incorrect_file() {
+        let file_path = Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("test_resources")
+            .join("dontexists.mir");
+
+        // Un comment and create method making this test passing :
+        // assert_eq!(parse_from_file(&file_path), Err(ParseError::CantOpenFile)));
+    }
 }
