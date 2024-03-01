@@ -2,6 +2,7 @@
 enum ParseError {
     ParseError,
     NotEnoughElementError,
+    CantOpenFile,
 }
 
 // Exercice : On laisse écrire toute cette fonction avec sa signature
@@ -22,6 +23,19 @@ fn parse_line(line: &str) -> Result<(f32, f32), ParseError> {
     }
 }
 
+fn parse_from_file(file_path: &std::path::Path) -> Result<(f32, f32), ParseError> {
+    let content = std::fs::read_to_string(file_path);
+    match content {
+        Ok(content) => {
+            let lines: Vec<&str> = content.split("\n").collect();
+            if let Some(line) = lines.get(0) {
+                return parse_line(line);
+            }
+            return Err(ParseError::NotEnoughElementError);
+        }
+        Err(_) => return Err(ParseError::CantOpenFile),
+    }
+}
 fn main() {}
 
 #[cfg(test)]
@@ -52,7 +66,7 @@ mod tests {
             .join("correct_file.mir");
 
         // Un comment and create method making this test passing :
-        // assert_eq!(parse_from_file(&file_path), Ok((12.5, -2.45)));
+        assert_eq!(parse_from_file(&file_path), Ok((12.5, -2.45)));
     }
 
     #[test]
@@ -62,6 +76,6 @@ mod tests {
             .join("dontexists.mir");
 
         // Un comment and create method making this test passing :
-        // assert_eq!(parse_from_file(&file_path), Err(ParseError::CantOpenFile)));
+        assert_eq!(parse_from_file(&file_path), Err(ParseError::CantOpenFile));
     }
 }
