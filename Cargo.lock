@@ -698,6 +698,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "ex8"
+version = "0.1.0"
+
+[[package]]
+name = "ex9"
+version = "0.1.0"
+
+[[package]]
 name = "fast-srgb8"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
