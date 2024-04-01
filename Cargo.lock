@@ -644,6 +644,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "ex10"
+version = "0.1.0"
+
+[[package]]
 name = "ex2"
 version = "0.1.0"
 dependencies = [
@@ -1649,6 +1653,14 @@ dependencies = [
  "wasi",
  "windows-sys 0.48.0",
 ]
+
+[[package]]
+name = "mt_channels"
+version = "0.1.0"
+
+[[package]]
+name = "multi_thread"
+version = "0.1.0"
 
 [[package]]
 name = "naga"

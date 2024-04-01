@@ -59,6 +59,8 @@ mod tests {
 
         let mut simpsons = simpsons;
         simpsons.sort();
+
+        simpsons.sort_by(|l, r| l.age.partial_cmp(&r.age).unwrap());
         assert_eq!(simpsons[0].name, "Maggie");
         assert_eq!(simpsons[1].name, "Lisa");
         assert_eq!(simpsons[2].name, "Bart");
